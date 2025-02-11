@@ -1,0 +1,76 @@
+> Task :checkKotlinGradlePluginConfigurationErrors
+> Task :processResources UP-TO-DATE
+> Task :processTestResources NO-SOURCE
+> Task :compileKotlin
+> Task :compileJava NO-SOURCE
+> Task :classes UP-TO-DATE
+> Task :compileTestKotlin
+> Task :compileTestJava NO-SOURCE
+> Task :testClasses UP-TO-DATE
+14:18:26.629 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.springboot.issues.springbootdata329issue.ApplicationTests]: ApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+14:18:26.751 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.springboot.issues.springbootdata329issue.Application for test class org.springboot.issues.springbootdata329issue.ApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.2.9)
+
+2025-02-11T14:18:27.058+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] o.s.i.s.ApplicationTests                 : Starting ApplicationTests using Java 17.0.11 with PID 21892 (started by mrsic in /Users/mrsic/Desktop/Projekte/Playground/SpringBootDataTest_3.2.9)
+2025-02-11T14:18:27.059+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] o.s.i.s.ApplicationTests                 : No active profile set, falling back to 1 default profile: "default"
+2025-02-11T14:18:27.329+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-02-11T14:18:27.373+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 38 ms. Found 1 JPA repository interface.
+2025-02-11T14:18:27.419+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] beddedDataSourceBeanFactoryPostProcessor : Replacing 'dataSource' DataSource bean with embedded version
+2025-02-11T14:18:27.550+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] o.s.j.d.e.EmbeddedDatabaseFactory        : Starting embedded database: url='jdbc:h2:mem:91239502-fae5-4537-8fc2-949ce9947d9c;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false', username='sa'
+2025-02-11T14:18:27.785+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-02-11T14:18:27.827+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.10.Final
+2025-02-11T14:18:27.862+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-02-11T14:18:28.056+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-02-11T14:18:28.821+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: drop table if exists child_table cascade
+Hibernate: drop table if exists parent_table cascade
+Hibernate: create table child_table (child_id varchar(255), parent_id varchar(255) not null)
+Hibernate: create table parent_table (parent_id varchar(255) not null, primary key (parent_id))
+Hibernate: alter table if exists child_table add constraint FKaa3x5n334uxfqf3k1gw482hc8 foreign key (parent_id) references parent_table
+2025-02-11T14:18:28.859+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-02-11T14:18:29.647+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [    Test worker] o.s.i.s.ApplicationTests                 : Started ApplicationTests in 2.825 seconds (process running for 3.886)
+Hibernate: select sbtpe1_0.parent_id,c1_0.parent_id,c1_0.child_id from parent_table sbtpe1_0 left join child_table c1_0 on sbtpe1_0.parent_id=c1_0.parent_id where sbtpe1_0.parent_id=?
+Hibernate: insert into parent_table (parent_id) values (?)
+Hibernate: insert into child_table (parent_id,child_id) values (?,?)
+Hibernate: select sbtpe1_0.parent_id,c1_0.child_id from parent_table sbtpe1_0 left join child_table c1_0 on sbtpe1_0.parent_id=c1_0.parent_id where c1_0.child_id=?
+
+Invoked method is not a property accessor
+java.lang.IllegalStateException: Invoked method is not a property accessor
+	at org.springframework.data.projection.PropertyAccessingMethodInterceptor.invoke(PropertyAccessingMethodInterceptor.java:66)
+	at org.springframework.data.projection.ProjectingMethodInterceptor.invoke(ProjectingMethodInterceptor.java:71)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.ProxyProjectionFactory$TargetAwareMethodInterceptor.invoke(ProxyProjectionFactory.java:243)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
+	at jdk.proxy3/jdk.proxy3.$Proxy147.getChildId(Unknown Source)
+	at org.springboot.issues.springbootdata329issue.ApplicationTests.testInvokedMethodIsNotAPropertyAccessorSpringBoot329(ApplicationTests.kt:26)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+2025-02-11T14:18:30.350+01:00  INFO 21892 --- [SpringBootDataTest_3.2.9] [ionShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+Hibernate: drop table if exists child_table cascade
+> Task :test
+ApplicationTests > testInvokedMethodIsNotAPropertyAccessorSpringBoot329() FAILED
+    java.lang.IllegalStateException at ApplicationTests.kt:26
+Hibernate: drop table if exists parent_table cascade
+> Task :test FAILED
+1 test completed, 1 failed
+FAILURE: Build failed with an exception.
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/mrsic/Desktop/Projekte/Playground/SpringBootDataTest_3.2.9/build/reports/tests/test/index.html
+* Try:
+> Run with --scan to get full insights.
+BUILD FAILED in 7s
+5 actionable tasks: 4 executed, 1 up-to-date
+
