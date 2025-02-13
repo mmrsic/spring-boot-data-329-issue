@@ -41,10 +41,26 @@ open class SpringBootTestChildEntity() {
     }
 
     private var childId: String = ""
+    private var child: Boolean = true
+    private var fromOuterSpace: Boolean = false
 
     open fun getChildId() = childId
 
     open fun setChildId(newId: String) {
         childId = newId
     }
+
+
+    open fun getChild() = child
+    open fun setChild(newValue: Boolean) {
+        child = newValue
+    }
+
+
+    open fun getFromOuterSpace() = fromOuterSpace
+
+    open fun setFromOuterSpace(newValue: Boolean) {
+        this.fromOuterSpace = newValue
+    }
+
 }

@@ -10,4 +10,6 @@ interface SpringBootTestParentInterface {
 interface SpringBootTestChildInterface {
 
     val childId: String
+    val isChild: Boolean
+    val fromOuterSpace: Boolean
 }
